@@ -7,8 +7,8 @@ public class Users {
     private String password;
     private boolean isGameMaster;
 
-    public Users(boolean isGameMaster, String password, String userName) {
-        this.isGameMaster = isGameMaster;
+    public Users( String password, String userName) {
+
         this.password = password;
         this.userName = userName;
 
