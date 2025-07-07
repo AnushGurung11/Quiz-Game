@@ -18,5 +18,14 @@ public class UserController {
         }else {
             return false;
         }
+
+    }
+
+    public boolean login(String username, String password){
+
+        boolean isLogin = false;
+
+
+        return isLogin;
     }
 }

@@ -11,13 +11,16 @@ public class UserDao {
         boolean isUserInserted = false;
 
         Connection conn = null;
-        conn = DataBaseConnection.connect();
+        conn = DatabaseConnection.connect();
         if( conn != null){
-            String query = "INSERT INTO user ( 'username', 'password') VALUES (?,?)";
+            String query = "INSERT INTO `user` (username, password,isgamemaster) VALUES (?,?,?)";
             PreparedStatement ps = conn.prepareStatement(query);
 
             ps.setString(1, user.getUserName());
+
             ps.setString(2, user.getPassword());
+            ps.setBoolean(3, false);
+
             int rows = ps.executeUpdate();
 
             if (rows >0 ){

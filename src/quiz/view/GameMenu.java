@@ -1,15 +1,16 @@
 package quiz.view;
 
+import com.mysql.cj.log.Log;
 import quiz.controller.UserController;
 
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class QuizGame {
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+public class GameMenu {
 
+    public static void showSignUpMenu() throws SQLException, ClassNotFoundException {
         //Creating an object of the controller
-        UserController userController = new UserController();
+
 
         Scanner scan = new Scanner(System.in);
         System.out.println("Are you ready for the quizzes!!");
@@ -20,12 +21,9 @@ public class QuizGame {
         int option = Integer.parseInt(scan.nextLine());
 
         if (option == 1){
-            System.out.println("User name");
-            String userName = scan.nextLine();
-            System.out.println("Password");
-            String password = scan.nextLine();
-
-            System.out.println(userController.signUp(password,userName));
+            SignUpView.signUpView();
+        } else if (option == 2) {
+            LoginView.loginView();
         }
 
     }
