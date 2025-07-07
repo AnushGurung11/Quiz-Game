@@ -31,4 +31,7 @@ public class UserDao {
         return isUserInserted;
 
     }
+    public boolean checkUser(Users users){
+        return true;
+    }
 }

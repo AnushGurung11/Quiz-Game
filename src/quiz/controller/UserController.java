@@ -24,8 +24,14 @@ public class UserController {
     public boolean login(String username, String password){
 
         boolean isLogin = false;
+        Users users = new Users(password,username);
+        isLogin = userdao.checkUser(users);
+        if (isLogin){
+            return true;
+        }else {
+            return false;
+        }
 
 
-        return isLogin;
     }
 }
