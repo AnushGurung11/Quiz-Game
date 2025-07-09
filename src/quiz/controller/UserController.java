@@ -2,6 +2,8 @@ package quiz.controller;
 
 import quiz.dao.UserDao;
 import quiz.model.Users;
+import quiz.view.GameMasterView;
+import quiz.view.PlayerView;
 
 import java.sql.SQLException;
 
@@ -27,13 +29,11 @@ public class UserController {
 
     public boolean logIn(String username, String password) throws SQLException, ClassNotFoundException {
         Users user = userdao.checkUser(username, password);
-            if(user.getUserName() != null){
+            if(user != null){
                 if(user.isGameMaster()){
-//                GameMasterView.show();
-                    System.out.println("enter as game master");
+                    GameMasterView.show();
                 }else{
-//                PlayerView.gameStart();
-                    System.out.println("enter as player");
+                    PlayerView.gameStart();
                 }
                 return true;
             }

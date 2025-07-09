@@ -35,7 +35,7 @@ public class UserDao {
 
     }
     public Users checkUser(String username, String password) throws SQLException, ClassNotFoundException {
-        Users user = new Users();
+        Users user = null;
         Connection conn =  DatabaseConnection.connect();
 
 
@@ -46,6 +46,7 @@ public class UserDao {
             ps.setString(2,password);
             ResultSet userSet = ps.executeQuery();
             while(userSet.next()){
+                user = new Users();
                 user.setUsername(userSet.getString("username"));
                 user.setPassword(userSet.getString("password"));
                 user.setGameMaster(userSet.getBoolean("isgamemaster"));

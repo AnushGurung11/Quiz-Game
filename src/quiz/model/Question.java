@@ -15,6 +15,10 @@ public class Question {
         this.correct_index = correct_index;
     }
 
+    public Question() {
+
+    }
+
     public String getTitle() {
         return title;
     }
