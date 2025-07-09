@@ -14,13 +14,10 @@ public class LoginView {
         System.out.println("Password");
         String password = scan.nextLine();
 
-        if((userController.login(password,userName))){
-            System.out.println("Login successful");
-        }else {
-            System.out.println("Login Unsuccessful");
 
+        if((!userController.logIn(password,userName))){
+            System.out.println("Login Failed");
         }
-
     }
 }
 

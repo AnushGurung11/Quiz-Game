@@ -6,10 +6,14 @@ import quiz.model.Users;
 import java.sql.SQLException;
 
 public class UserController {
-    private UserDao userdao = new UserDao();
+    private final UserDao userdao = new UserDao();
+
+    public UserController() throws SQLException, ClassNotFoundException {
+    }
+
     public boolean signUp(String username, String password) throws SQLException, ClassNotFoundException {
 
-        boolean isSignedUp = false;
+        boolean isSignedUp ;
         Users user = new Users(password,username);
         userdao.insertUser(user);
         isSignedUp = userdao.insertUser(user);
@@ -21,17 +25,23 @@ public class UserController {
 
     }
 
-    public boolean login(String username, String password){
-
-        boolean isLogin = false;
-        Users users = new Users(password,username);
-        isLogin = userdao.checkUser(users);
-        if (isLogin){
-            return true;
-        }else {
-            return false;
-        }
-
-
+    public boolean logIn(String username, String password) throws SQLException, ClassNotFoundException {
+        Users user = userdao.checkUser(username, password);
+            if(user.getUserName() != null){
+                if(user.isGameMaster()){
+//                GameMasterView.show();
+                    System.out.println("enter as game master");
+                }else{
+//                PlayerView.gameStart();
+                    System.out.println("enter as player");
+                }
+                return true;
+            }
+        return false;
     }
 }
+
+
+
+
+
