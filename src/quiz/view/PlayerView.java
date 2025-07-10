@@ -21,9 +21,9 @@ public class PlayerView {
             if(option == 1){
                 questionController.startGame();
             } else if (option == 2) {
-
+                System.out.println("Working on score boards");
             } else if (option == 3) {
-
+                System.out.println("Exiting");
             }
 
         }else {

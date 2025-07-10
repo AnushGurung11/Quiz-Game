@@ -1,23 +1,34 @@
 package quiz.service;
 
+import quiz.dao.QuestionDao;
+import quiz.model.Question;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 public class QuestionService {
-    public
-    QuestionController questionController = new QuestionController();
-    Scanner input = new Scanner(System.in);
-    int answer = 0;
-    ArrayList<Question> quizList = questionController.getQuestions();
-        for(Question question: quizList){
-        System.out.println(question.getTitle());
-        question.showOptions();
-        System.out.println("Choose an option: ");
-        answer = Integer.parseInt(input.nextLine());
-        if(question.checkAnswer(answer)){
-            //TODO need to calculate score
-            //TODO add the score information to the score board
-            System.out.println("correct");
-        }else{
-            //not required just for checking purposes
-            System.out.println("incorrect");
+    public ArrayList<Question> getQuestions() {
+        ArrayList<Question> questionsList = new ArrayList<>();
+        QuestionDao questiondao = null;
+        try {
+            questiondao = new QuestionDao();
+            ResultSet questionSet = questiondao.loadQuestions();
+            while(questionSet.next()){
+                //TITLE, OPTIONS(1-4), CORRECT OPTION
+                Question question = new Question(
+                        questionSet.getString("title"),
+                        questionSet.getInt("option1"),
+                        questionSet.getInt("option2"),
+                        questionSet.getInt("option3"),
+                        questionSet.getInt("option4"),
+                        questionSet.getInt("correctOption"));
+                questionsList.add(question);
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
+        return questionsList;
     }
+
 }

@@ -3,33 +3,54 @@ package quiz.controller;
 
 import quiz.dao.QuestionDao;
 import quiz.model.Question;
+import quiz.service.QuestionService;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class QuestionController {
-    public ArrayList<Question> getQuestions() {
-        ArrayList<Question> questionsList = new ArrayList<>();
+    private final QuestionService questionService = new QuestionService();
 
-        try {
-            QuestionDao questiondao = new QuestionDao();
-            ResultSet questionSet = questiondao.loadQuestions();
-            while(questionSet.next()){
-                //TITLE, OPTIONS(1-4), CORRECT OPTION
-                Question question = new Question(
-                        questionSet.getString("question"),
-                        questionSet.getInt("option_1"),
-                        questionSet.getInt("option_2"),
-                        questionSet.getInt("option_3"),
-                        questionSet.getInt("option_4"),
-                        questionSet.getInt("correct_option"));
-                questionsList.add(question);
+    public void startGame(){
+        Scanner input = new Scanner(System.in);
+        int answer = 0;
+
+        ArrayList<Question> quizList = questionService.getQuestions();
+        for(Question question: quizList){
+            System.out.println(question.getTitle());
+            question.showOptions();
+            System.out.println("Choose and Option: ");
+            answer = Integer.parseInt(input.nextLine());
+
+            if(question.checkAnswer(answer)){
+                System.out.println("correct");
+            }else {
+                System.out.println("incorrect");
             }
-        } catch (SQLException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
         }
-        return questionsList;
     }
+
+    public void listQuestions(){
+        ArrayList<Question> quizQuestion = questionService.getQuestions();
+        int questionIndex = 1;
+        for(Question ques: quizQuestion){
+            System.out.println(questionIndex +". "+ ques.getTitle());
+            ques.showOptions();
+            System.out.println("Correct Option: "+ ques.getCorrect_index());
+            questionIndex++;
+        }
+    }
+
+    public void createQuestion(){
+//        TODO Create questions
+    }
+
+    public void updateQuestion(){
+//        TODO Update a single question or whole question set
+    }
+
+
 }
 
