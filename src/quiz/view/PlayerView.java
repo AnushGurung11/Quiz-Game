@@ -1,5 +1,6 @@
 package quiz.view;
 
+import com.mysql.cj.BindValue;
 import quiz.controller.QuestionController;
 import quiz.model.Question;
 
@@ -9,24 +10,25 @@ import java.util.Scanner;
 
 public class PlayerView {
     public static void gameStart(){
-        QuestionController questionController = new QuestionController();
         Scanner input = new Scanner(System.in);
-        int answer = 0;
+        QuestionController questionController = new QuestionController();
+        System.out.println("1. Start Game");
+        System.out.println("2. View ScoreBoard");
+        System.out.println("3. Exit");
+        int option = Integer.parseInt(input.nextLine());
 
-        ArrayList<Question> quizList = questionController.getQuestions();
+        if (option > 0){
+            if(option == 1){
+                questionController.startGame();
+            } else if (option == 2) {
 
-        for (Question question : quizList){
-            System.out.println(question.getTitle());
-            question.showOptions();
-            System.out.println("Choose an Option: ");
+            } else if (option == 3) {
 
-            answer = Integer.parseInt(input.nextLine());
-
-            if(question.checkAnswer(answer)){
-                System.out.println("Correct");
-            }else {
-                System.out.println("Incorrect");
             }
+
+        }else {
+            System.out.println("Invalid Option");
         }
+
     }
 }
