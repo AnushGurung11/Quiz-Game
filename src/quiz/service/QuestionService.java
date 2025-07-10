@@ -17,12 +17,12 @@ public class QuestionService {
             while(questionSet.next()){
                 //TITLE, OPTIONS(1-4), CORRECT OPTION
                 Question question = new Question(
-                        questionSet.getString("title"),
-                        questionSet.getInt("option1"),
-                        questionSet.getInt("option2"),
-                        questionSet.getInt("option3"),
-                        questionSet.getInt("option4"),
-                        questionSet.getInt("correctOption"));
+                        questionSet.getString("question"),
+                        questionSet.getString("option_1"),
+                        questionSet.getString("option_2"),
+                        questionSet.getString("option_3"),
+                        questionSet.getString("option_4"),
+                        questionSet.getString("correct_option"));
                 questionsList.add(question);
             }
         } catch (SQLException | ClassNotFoundException e) {

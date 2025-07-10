@@ -2,21 +2,24 @@ package quiz.model;
 
 public class Question {
     private String title;
-    private int[] options = new int[4];
+    private String[] options = new String[4];
     private int correct_index;
 
-    public Question(String title, int option_1, int option_2, int option_3, int option_4, int correct_index)
+    public Question(String title, String option_1, String option_2, String option_3, String option_4, String correct_index)
     {
         this.title = title;
         this.options[0] = option_1;
         this.options[1] = option_2;
         this.options[2] = option_3;
         this.options[3]= option_4;
-        this.correct_index = correct_index;
+        this.correct_index = Integer.parseInt(correct_index);
     }
 
     public Question() {
 
+    }
+
+    public Question(String question, String option1, String option2, String option3, String option4, int correctOption) {
     }
 
     public String getTitle() {

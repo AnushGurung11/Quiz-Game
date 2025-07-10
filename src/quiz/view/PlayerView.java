@@ -1,11 +1,8 @@
 package quiz.view;
 
-import com.mysql.cj.BindValue;
-import quiz.controller.QuestionController;
-import quiz.model.Question;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+import quiz.controller.QuestionController;
+
 import java.util.Scanner;
 
 public class PlayerView {

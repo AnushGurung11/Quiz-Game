@@ -25,6 +25,9 @@ public class QuestionController {
             answer = Integer.parseInt(input.nextLine());
 
             if(question.checkAnswer(answer)){
+//                TODO Create a scoreboard object which will invoke for each correct and incorrect answer.
+//                TODO  the score board object will keep the record of the user and create a whole new leader board system.
+//
                 System.out.println("correct");
             }else {
                 System.out.println("incorrect");
