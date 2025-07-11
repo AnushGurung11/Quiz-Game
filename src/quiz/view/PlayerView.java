@@ -2,11 +2,12 @@ package quiz.view;
 
 
 import quiz.controller.QuestionController;
+import quiz.model.Users;
 
 import java.util.Scanner;
 
 public class PlayerView {
-    public static void gameStart(){
+    public static void gameStart(Users user){
         Scanner input = new Scanner(System.in);
         QuestionController questionController = new QuestionController();
         System.out.println("1. Start Game");
@@ -16,7 +17,7 @@ public class PlayerView {
 
         if (option > 0){
             if(option == 1){
-                questionController.startGame();
+                questionController.startGame(user);
             } else if (option == 2) {
                 System.out.println("Working on score boards");
             } else if (option == 3) {

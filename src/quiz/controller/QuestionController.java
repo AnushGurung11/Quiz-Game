@@ -3,6 +3,7 @@ package quiz.controller;
 
 import quiz.dao.QuestionDao;
 import quiz.model.Question;
+import quiz.model.Users;
 import quiz.service.QuestionService;
 
 import java.sql.Array;
@@ -14,7 +15,7 @@ import java.util.Scanner;
 public class QuestionController {
     private final QuestionService questionService = new QuestionService();
 
-    public void startGame(){
+    public void  startGame(Users user){
         Scanner input = new Scanner(System.in);
         int answer = 0;
 

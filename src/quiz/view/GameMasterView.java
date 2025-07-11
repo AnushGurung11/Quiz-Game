@@ -13,8 +13,7 @@ public class GameMasterView {
         Scanner input = new Scanner(System.in);
         System.out.println("1. Add Questions");
         System.out.println("2. Delete Questions");
-        System.out.println("3. Game Testing");
-        System.out.println("4. Exit");
+        System.out.println("3. Exit");
 
         int choice = Integer.parseInt(input.nextLine());
         QuestionController questionController = new QuestionController();
@@ -35,9 +34,7 @@ public class GameMasterView {
             }else {
                 System.out.println("Enter the correct input");
             }
-        } else if (choice == 3 ) {
-            questionController.startGame();
-        }else if (choice == 4 ){
+        }else if (choice == 3 ){
             System.out.println("Exiting");
         }else{
             System.out.println("Enter a valid option");

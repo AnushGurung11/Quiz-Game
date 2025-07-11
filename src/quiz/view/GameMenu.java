@@ -24,6 +24,7 @@ public class GameMenu {
             SignUpView.signUpView();
         } else if (option == 2) {
             LoginView.loginView();
+
         }
 
     }
