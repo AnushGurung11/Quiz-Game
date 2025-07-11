@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class QuestionDao {
 
@@ -56,12 +57,27 @@ public class QuestionDao {
         return isQuestionInserted;
     }
 
-    public boolean deletion(){
+    public boolean deletion() throws SQLException, ClassNotFoundException {
         boolean isDeleted = false;
+        Connection conn = DatabaseConnection.connect();
 
+        System.out.println("(y/n) Confirm for deletion");
+        Scanner input = new Scanner(System.in);
+        String option = input.nextLine().toLowerCase();
 
-
+        if(option.equals("y")){
+            String query = "TRUNCATE TABLE `quizdb`.`questions`";
+            PreparedStatement ps = conn.prepareStatement(query);
+            if(ps.executeUpdate()>0){
+                isDeleted = true;
+            }
+        } else if (option.equals("n")) {
+            System.out.println("Canceled");
+        }else{
+            System.out.println("Enter a valid input");
+        }
 
         return isDeleted;
+
     }
 }
